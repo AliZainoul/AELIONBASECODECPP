@@ -149,24 +149,26 @@ class Vector {
         }
 
         // Scalar-Vector Product
-         Vector operator*(double scalar, const Vector& vec) {
+        friend Vector operator*(double scalar, const Vector& vec) {
         Vector tm(vec.M_size);
         for (int i = 0; i < vec.M_size; i++) tm[i] = scalar*vec[i];
         return tm;
         }
 
         // Vector-Scalar Product
-         Vector operator*(const Vector& vec, double scalar) {
-        Vector tm(vec.M_size);
-        for (int i = 0; i < vec.M_size; i++) tm[i] = scalar*vec[i];
+        Vector operator*(double scalar) {
+        Vector tm(this->M_size);
+        for (int i = 0; i < this->M_size; i++) 
+            tm[i] = scalar*this->M_data[i];
         return tm;
         }
+        // this is an implicit parameter. 
 
         // Unary Operator "+" overload - Usage: Vector V1 = +V2;
-         Vector operator+(const Vector& vec) {return vec;}
+        friend Vector operator+(const Vector& vec) {return vec;}
 
         // Unary Operator "-" overload - Usage: Vector V1 = -V2;
-        Vector operator-(const Vector& vec) {
+        friend Vector operator-(const Vector& vec) {
         Vector minus = vec;
         for (int i = 0; i < vec.M_size; i++) minus[i] = (-1) * vec[i];
         return minus;
@@ -180,7 +182,7 @@ class Vector {
         }
 
         // Binary Operator "-" overload - Usage: Vector V = V1-V2;
-         Vector operator-(const Vector& v1, const Vector & v2) {         // v=v1-v2
+        friend Vector operator-(const Vector& v1, const Vector & v2) {         // v=v1-v2
             if (v1.M_size != v2.M_size ) cout << "Bad vector sizes in Vector substraction.";
             Vector sum = v1; // It would cause problem without copy constructor
             sum -= v2;
