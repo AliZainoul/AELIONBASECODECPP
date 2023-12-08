@@ -149,21 +149,21 @@ class Vector {
         }
 
         // Scalar-Vector Product
-        friend Vector operator*(double scalar, const Vector& vec) {
+         Vector operator*(double scalar, const Vector& vec) {
         Vector tm(vec.M_size);
         for (int i = 0; i < vec.M_size; i++) tm[i] = scalar*vec[i];
         return tm;
         }
 
         // Vector-Scalar Product
-        friend Vector operator*(const Vector& vec, double scalar) {
+         Vector operator*(const Vector& vec, double scalar) {
         Vector tm(vec.M_size);
         for (int i = 0; i < vec.M_size; i++) tm[i] = scalar*vec[i];
         return tm;
         }
 
         // Unary Operator "+" overload - Usage: Vector V1 = +V2;
-        friend Vector operator+(const Vector& vec) {return vec;}
+         Vector operator+(const Vector& vec) {return vec;}
 
         // Unary Operator "-" overload - Usage: Vector V1 = -V2;
         Vector operator-(const Vector& vec) {
@@ -180,7 +180,7 @@ class Vector {
         }
 
         // Binary Operator "-" overload - Usage: Vector V = V1-V2;
-        friend Vector operator-(const Vector& v1, const Vector & v2) {         // v=v1-v2
+         Vector operator-(const Vector& v1, const Vector & v2) {         // v=v1-v2
             if (v1.M_size != v2.M_size ) cout << "Bad vector sizes in Vector substraction.";
             Vector sum = v1; // It would cause problem without copy constructor
             sum -= v2;
@@ -230,7 +230,7 @@ class Vector {
   double& operator[](int i){return M_data[i];} // Subscript Operator left value
   double operator[](int i) const{return M_data[i];} // Subscript Operator const
 
-  // Friends Functions
+  // s Functions
   friend double dot(const Vector&, const Vector&);  // Dot product
   friend Vector operator*(double, const Vector&);   // Scalar-Vector Product
   friend Vector operator*(const Vector&, double);   // Vector-Scalar Product
